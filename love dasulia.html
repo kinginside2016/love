@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Для моей маленькой</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #111;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+  }
+
+  h1 {
+    font-size: 4em;
+    text-align: center;
+    font-weight: bold;
+    background: linear-gradient(
+      90deg,
+      #ff0000, #ff7f00, #ffff00, #00ff00,
+      #0000ff, #4b0082, #9400d3, #ff0000
+    );
+    background-size: 400% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow 4s linear infinite;
+    filter: drop-shadow(0 0 20px rgba(255,255,255,0.4));
+  }
+
+  @keyframes rainbow {
+    0%   { background-position: 0% 50%; }
+    100% { background-position: 400% 50%; }
+  }
+
+  /* Переливающийся фон */
+  body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      45deg,
+      rgba(255,0,0,0.15), rgba(255,127,0,0.15),
+      rgba(255,255,0,0.15), rgba(0,255,0,0.15),
+      rgba(0,0,255,0.15), rgba(148,0,211,0.15)
+    );
+    background-size: 400% 400%;
+    animation: bgMove 10s ease infinite;
+    z-index: -1;
+  }
+
+  @keyframes bgMove {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+  }
+
+  .heart {
+    position: absolute;
+    bottom: -50px;
+    animation: float 5s linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes float {
+    to { transform: translateY(-110vh) rotate(360deg); }
+  }
+</style>
+</head>
+<body>
+  <h1>Я тебя очень сильно люблю моя любимая жена❤️</h1>
+
+  <script>
+    // Радужные сердечки
+    const colors = ['❤️','💛','💚','💙','💜','🧡'];
+    for (let i = 0; i < 25; i++) {
+      const h = document.createElement('div');
+      h.className = 'heart';
+      h.textContent = colors[Math.floor(Math.random() * colors.length)];
+      h.style.left = Math.random() * 100 + 'vw';
+      h.style.animationDelay = Math.random() * 5 + 's';
+      h.style.animationDuration = (3 + Math.random() * 4) + 's';
+      h.style.fontSize = (Math.random() * 25 + 20) + 'px';
+      document.body.appendChild(h);
+    }
+  </script>
+</body>
+</html>
